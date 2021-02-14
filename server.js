@@ -103,8 +103,8 @@ wss.on('connection', function(connection) {
             break;  
 				
          case "leave": 
-            console.log("Disconnecting ", data.name); 
             var conn = users[data.name]; 
+            console.log("Disconnecting", data.name, "and", conn.otherName);
             conn.otherName = null; 
 				
             //notify the other user so he can disconnect his peer connection 
@@ -126,12 +126,12 @@ wss.on('connection', function(connection) {
       }  
    });  
 	
-   //when user exits, for example closes a browser window 
-   //this may help if we are still in "offer","answer" or "candidate" state 
+   // when user exits, for example closes a browser window
+   // this may help if we are still in "offer","answer" or "candidate" state
    connection.on("close", function() { 
 	
       if(connection.name) { 
-      delete users[connection.name]; 
+         delete users[connection.name];
 		
          if(connection.otherName) { 
             console.log("Disconnecting from ", connection.otherName);
