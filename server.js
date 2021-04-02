@@ -29,13 +29,13 @@ wss.on('connection', function(connection) {
          case "login": 
 				
             //if anyone is logged in with this username then refuse 
-            if(users[data.name]) { 
-               console.log("User tried to log in: ", data.name); 
-               sendTo(connection, { 
-                  type: "login", 
-                  success: false 
-               }); 
-            } else { 
+            // if(users[data.name]) { 
+            //    console.log("User tried to log in: ", data.name); 
+            //    sendTo(connection, { 
+            //       type: "login", 
+            //       success: false 
+            //    }); 
+            // } else { 
                console.log("User logged in: ", data.name); 
                //save user connection on the server 
                users[data.name] = connection; 
@@ -45,7 +45,7 @@ wss.on('connection', function(connection) {
                   type: "login", 
                   success: true 
                }); 
-            } 
+            //} 
 				
             break; 
 				
